@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group([], function () {
+
+    Route::match(['get', 'post'], function () {
+
+    });
+
 });
