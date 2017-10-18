@@ -1,4 +1,4 @@
-<section id="hero_section" class="top_cont_outer">
+<section id="home" class="top_cont_outer">
     <div class="hero_wrapper">
         <div class="container">
             <div class="hero_section">
@@ -60,7 +60,7 @@
 
 
 <!--Service-->
-<section id="service">
+<section id="services">
     <div class="container">
         <h2>Services</h2>
         <div class="service_wrapper">

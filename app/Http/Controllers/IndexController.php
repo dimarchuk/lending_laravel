@@ -21,7 +21,35 @@ class IndexController extends Controller
         $service = Service::all();
 
 
-        return view('site.index');
+        $menu = array();
+        foreach ($pages as $page) {
+
+            $item = array('title' => $page->name, 'alias' => $page->alias);
+            array_push($menu, $item);
+
+        }
+
+        $item = array('title' => 'services', 'alias' => 'services');
+        array_push($menu, $item);
+
+        $item = array('title' => 'Portfolio', 'alias' => 'Portfolio');
+        array_push($menu, $item);
+
+        $item = array('title' => 'Team', 'alias' => 'team');
+        array_push($menu, $item);
+
+        $item = array('title' => 'Contact', 'alias' => 'contact');
+        array_push($menu, $item);
+
+        return view('site.index', array(
+
+            'menu' => $menu,
+            'pages' => $pages,
+            'services' => $service,
+            'portfolios' => $portfolios,
+            'peoples' => $peoples
+
+        ));
 
     }
 }
