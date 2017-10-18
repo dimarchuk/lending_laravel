@@ -80,7 +80,7 @@
                                 <div class="service_block">
                                     <div class="service_icon delay-03s animated wow  zoomIn">
                                         <span>
-                                            <i class = "fa {{ $service -> icon }}"></i>
+                                            <i class="fa {{ $service -> icon }}"></i>
                                         </span>
                                     </div>
                                     <h3 class="animated fadeInUp wow">{{ $service -> name }}</h3>
@@ -103,205 +103,109 @@
 @endif
 
 
+@if(isset($portfolios) && is_object($portfolios))
+    <!-- Portfolio -->
+    <section id="Portfolio" class="content">
 
-<!-- Portfolio -->
-<section id="Portfolio" class="content">
+        <!-- Container -->
+        <div class="container portfolio_title">
 
-    <!-- Container -->
-    <div class="container portfolio_title">
+            <!-- Title -->
+            <div class="section-title">
+                <h2>Portfolio</h2>
+            </div>
+            <!--/Title -->
 
-        <!-- Title -->
-        <div class="section-title">
-            <h2>Portfolio</h2>
         </div>
-        <!--/Title -->
+        <!-- Container -->
 
-    </div>
-    <!-- Container -->
+        <div class="portfolio-top"></div>
 
-    <div class="portfolio-top"></div>
+        <!-- Portfolio Filters -->
+        <div class="portfolio">
 
-    <!-- Portfolio Filters -->
-    <div class="portfolio">
+            @if(isset($tags))
 
-        <div id="filters" class="sixteen columns">
-            <ul class="clearfix">
-                <li><a id="all" href="#" data-filter="*" class="active">
-                        <h5>All</h5>
-                    </a></li>
-                <li><a class="" href="#" data-filter=".prototype">
-                        <h5>Prototype</h5>
-                    </a></li>
-                <li><a class="" href="#" data-filter=".design">
-                        <h5>Design</h5>
-                    </a></li>
-                <li><a class="" href="#" data-filter=".android">
-                        <h5>Android</h5>
-                    </a></li>
-                <li><a class="" href="#" data-filter=".appleIOS">
-                        <h5>Apple IOS</h5>
-                    </a></li>
-                <li><a class="" href="#" data-filter=".web">
-                        <h5>Web App</h5>
-                    </a></li>
-            </ul>
+                <div id="filters" class="sixteen columns">
+                    <ul class="clearfix">
+
+                        <li><a id="all" href="#" data-filter="*" class="active">
+                                <h5>All</h5>
+                            </a></li>
+                        @foreach($tags as $tag)
+                            <li><a class="" href="#" data-filter=".{{$tag}} ">
+                                    <h5> {{ $tag }} </h5>
+                                </a>
+                            </li>
+                        @endforeach
+
+                    </ul>
+                </div>
+                <!--/Portfolio Filters -->
+
+        @endif
+
+
+
+        <!-- Portfolio Wrapper -->
+            <div class="isotope fadeInLeft animated wow"
+                 style="position: relative; overflow: hidden; height: 480px;"
+                 id="portfolio_wrapper">
+
+                @foreach($portfolios as $item)
+                    <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
+                         class="portfolio-item one-four   {{ $item -> filter }} isotope-item">
+                        <div class="portfolio_img">
+                            {!! Html::image('assets/img/'.$item->images,$item->name) !!}
+                        </div>
+                        <div class="item_overlay">
+                            <div class="item_info">
+                                <h4 class="project_name"> {{ $item -> name }} </h4>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+
+            </div>
+            <!--/Portfolio Wrapper -->
+
         </div>
         <!--/Portfolio Filters -->
 
-        <!-- Portfolio Wrapper -->
-        <div class="isotope fadeInLeft animated wow"
-             style="position: relative; overflow: hidden; height: 480px;"
-             id="portfolio_wrapper">
+        <div class="portfolio_btm"></div>
 
-            <!-- Portfolio Item -->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four   appleIOS isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic1.jpg') }}"
-                                                alt="Portfolio 1">
-                </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">SMS Mobile App</h4>
-                    </div>
-                </div>
-            </div>
-            <!--/Portfolio Item -->
 
-            <!-- Portfolio Item-->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(337px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four  design isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic2.jpg') }}"
-                                                alt="Portfolio 1">
-                </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Finance App</h4>
-                    </div>
-                </div>
-            </div>
-            <!--/Portfolio Item -->
-
-            <!-- Portfolio Item -->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(674px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four  design  isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic3.jpg') }}"
-                                                alt="Portfolio 1">
-                </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">GPS Concept</h4>
-                    </div>
-                </div>
-            </div>
-            <!--/Portfolio Item-->
-
-            <!-- Portfolio Item-->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four  android  prototype web isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic4.jpg') }}"
-                                                alt="Portfolio 1">
-                </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Shopping</h4>
-                    </div>
-                </div>
-            </div>
-            <!-- Portfolio Item -->
-
-            <!-- Portfolio Item -->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four  design isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic5.jpg') }}"
-                                                alt="Portfolio 1">
-                </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Managment</h4>
-                    </div>
-                </div>
-            </div>
-            <!--/Portfolio Item -->
-
-            <!-- Portfolio Item -->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(337px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four  web isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic6.jpg') }}"
-                                                alt="Portfolio 1">
-                </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">iPhone</h4>
-                    </div>
-                </div>
-            </div>
-            <!--/Portfolio Item -->
-
-            <!-- Portfolio Item  -->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(674px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four  design web isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic7.jpg') }}"
-                                                alt="Portfolio 1">
-                </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Nexus Phone</h4>
-                    </div>
-                </div>
-            </div>
-            <!--/Portfolio Item -->
-
-            <!-- Portfolio Item -->
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
-                 class="portfolio-item one-four   android isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic8.jpg') }}"
-                                                alt="Portfolio 1">
-                </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Android</h4>
-                    </div>
-                </div>
-                </a> </div>
-            <!--/Portfolio Item -->
-
+        <div id="project_container">
+            <div class="clear"></div>
+            <div id="project_data"></div>
         </div>
-        <!--/Portfolio Wrapper -->
-
-    </div>
-    <!--/Portfolio Filters -->
-
-    <div class="portfolio_btm"></div>
 
 
-    <div id="project_container">
-        <div class="clear"></div>
-        <div id="project_data"></div>
-    </div>
+    </section>
+    <!--/Portfolio -->
+@endif
 
 
-</section>
-<!--/Portfolio -->
-
-<section class="page_section" id="clients"><!--page_section-->
-    <h2>Clients</h2>
-    <!--page_section-->
-    <div class="client_logos"><!--client_logos-->
-        <div class="container">
-            <ul class="fadeInRight animated wow">
-                <li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo1.png') }}"
-                                                      alt=""></a></li>
-                <li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo2.png') }}"
-                                                      alt=""></a></li>
-                <li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo3.png') }}"
-                                                      alt=""></a></li>
-                <li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo4.png') }}"
-                                                      alt=""></a></li>
-            </ul>
-        </div>
-    </div>
-</section>
-<!--client_logos-->
+{{--<section class="page_section" id="clients"><!--page_section-->--}}
+{{--<h2>Clients</h2>--}}
+{{--<!--page_section-->--}}
+{{--<div class="client_logos"><!--client_logos-->--}}
+{{--<div class="container">--}}
+{{--<ul class="fadeInRight animated wow">--}}
+{{--<li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo1.png') }}"--}}
+{{--alt=""></a></li>--}}
+{{--<li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo2.png') }}"--}}
+{{--alt=""></a></li>--}}
+{{--<li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo3.png') }}"--}}
+{{--alt=""></a></li>--}}
+{{--<li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo4.png') }}"--}}
+{{--alt=""></a></li>--}}
+{{--</ul>--}}
+{{--</div>--}}
+{{--</div>--}}
+{{--</section>--}}
+{{--<!--client_logos-->--}}
 
 <section class="page_section team" id="team"><!--main-section team-start-->
     <div class="container">

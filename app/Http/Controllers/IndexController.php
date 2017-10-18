@@ -9,6 +9,7 @@ use App\{
     Portfolio,
     People
 };
+use DB;
 
 class IndexController extends Controller
 {
@@ -19,7 +20,8 @@ class IndexController extends Controller
         $peoples = People::all();
         $portfolios = Portfolio::all();
         $service = Service::all();
-
+        //filters
+        $tags = DB::table('portfolios')->distinct()->pluck('filter');
 
         $menu = array();
         foreach ($pages as $page) {
@@ -47,7 +49,8 @@ class IndexController extends Controller
             'pages' => $pages,
             'services' => $service,
             'portfolios' => $portfolios,
-            'peoples' => $peoples
+            'peoples' => $peoples,
+            'tags' => $tags
 
         ));
 
