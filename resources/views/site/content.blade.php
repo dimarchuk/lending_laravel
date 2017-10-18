@@ -60,73 +60,48 @@
 
 @endif
 
-<!--Service-->
-<section id="services">
-    <div class="container">
-        <h2>Services</h2>
-        <div class="service_wrapper">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="service_block">
-                        <div class="service_icon delay-03s animated wow  zoomIn"><span><i
-                                        class="fa fa-android"></i></span></div>
-                        <h3 class="animated fadeInUp wow">Android</h3>
-                        <p class="animated fadeInDown wow">Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 borderLeft">
-                    <div class="service_block">
-                        <div class="service_icon icon2  delay-03s animated wow zoomIn"><span><i class="fa fa-apple"></i></span>
+
+@if(isset($services) && is_object($services))
+    <!--Service-->
+    <section id="service">
+        <div class="container">
+            <h2>Services</h2>
+            <div class="service_wrapper">
+
+                @foreach($services as $k => $service)
+
+                    @if($k == 0 || $k % 3 == 0)
+
+                        <div class="row {{ ($k != 0) ? 'borderTop' : '' }}">
+
+                            @endif
+
+                            <div class="col-lg-4 {{ ($k % 3 > 0) ? 'borderLeft' : '' }}  {{ ($k > 2) ? 'mrgTop' : '' }}">
+                                <div class="service_block">
+                                    <div class="service_icon delay-03s animated wow  zoomIn">
+                                        <span>
+                                            <i class = "fa {{ $service -> icon }}"></i>
+                                        </span>
+                                    </div>
+                                    <h3 class="animated fadeInUp wow">{{ $service -> name }}</h3>
+                                    <p class="animated fadeInDown wow">
+                                        {{ $service -> text }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            @if( ($k + 1) % 3 == 0 )
+
                         </div>
-                        <h3 class="animated fadeInUp wow">Apple IOS</h3>
-                        <p class="animated fadeInDown wow">Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 borderLeft">
-                    <div class="service_block">
-                        <div class="service_icon icon3  delay-03s animated wow zoomIn"><span><i class="fa fa-html5"></i></span>
-                        </div>
-                        <h3 class="animated fadeInUp wow">Design</h3>
-                        <p class="animated fadeInDown wow">Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row borderTop">
-                <div class="col-lg-4 mrgTop">
-                    <div class="service_block">
-                        <div class="service_icon delay-03s animated wow  zoomIn"><span><i
-                                        class="fa fa-dropbox"></i></span></div>
-                        <h3 class="animated fadeInUp wow">Concept</h3>
-                        <p class="animated fadeInDown wow">Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 borderLeft mrgTop">
-                    <div class="service_block">
-                        <div class="service_icon icon2  delay-03s animated wow zoomIn"><span><i class="fa fa-slack"></i></span>
-                        </div>
-                        <h3 class="animated fadeInUp wow">User Research</h3>
-                        <p class="animated fadeInDown wow">Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 borderLeft mrgTop">
-                    <div class="service_block">
-                        <div class="service_icon icon3  delay-03s animated wow zoomIn"><span><i class="fa fa-users"></i></span>
-                        </div>
-                        <h3 class="animated fadeInUp wow">User Experience</h3>
-                        <p class="animated fadeInDown wow">Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
-                    </div>
-                </div>
+
+                    @endif
+
+                @endforeach
             </div>
         </div>
-    </div>
-</section>
-<!--Service-->
+    </section>
+@endif
+
 
 
 <!-- Portfolio -->
@@ -174,13 +149,15 @@
         <!--/Portfolio Filters -->
 
         <!-- Portfolio Wrapper -->
-        <div class="isotope fadeInLeft animated wow" style="position: relative; overflow: hidden; height: 480px;"
+        <div class="isotope fadeInLeft animated wow"
+             style="position: relative; overflow: hidden; height: 480px;"
              id="portfolio_wrapper">
 
             <!-- Portfolio Item -->
             <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
                  class="portfolio-item one-four   appleIOS isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic1.jpg') }}" alt="Portfolio 1">
+                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic1.jpg') }}"
+                                                alt="Portfolio 1">
                 </div>
                 <div class="item_overlay">
                     <div class="item_info">
@@ -193,7 +170,8 @@
             <!-- Portfolio Item-->
             <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(337px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
                  class="portfolio-item one-four  design isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic2.jpg') }}" alt="Portfolio 1">
+                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic2.jpg') }}"
+                                                alt="Portfolio 1">
                 </div>
                 <div class="item_overlay">
                     <div class="item_info">
@@ -206,7 +184,8 @@
             <!-- Portfolio Item -->
             <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(674px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
                  class="portfolio-item one-four  design  isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic3.jpg') }}" alt="Portfolio 1">
+                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic3.jpg') }}"
+                                                alt="Portfolio 1">
                 </div>
                 <div class="item_overlay">
                     <div class="item_info">
@@ -219,7 +198,8 @@
             <!-- Portfolio Item-->
             <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
                  class="portfolio-item one-four  android  prototype web isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic4.jpg') }}" alt="Portfolio 1">
+                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic4.jpg') }}"
+                                                alt="Portfolio 1">
                 </div>
                 <div class="item_overlay">
                     <div class="item_info">
@@ -232,7 +212,8 @@
             <!-- Portfolio Item -->
             <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
                  class="portfolio-item one-four  design isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic5.jpg') }}" alt="Portfolio 1">
+                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic5.jpg') }}"
+                                                alt="Portfolio 1">
                 </div>
                 <div class="item_overlay">
                     <div class="item_info">
@@ -245,7 +226,8 @@
             <!-- Portfolio Item -->
             <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(337px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
                  class="portfolio-item one-four  web isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic6.jpg') }}" alt="Portfolio 1">
+                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic6.jpg') }}"
+                                                alt="Portfolio 1">
                 </div>
                 <div class="item_overlay">
                     <div class="item_info">
@@ -258,7 +240,8 @@
             <!-- Portfolio Item  -->
             <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(674px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
                  class="portfolio-item one-four  design web isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic7.jpg') }}" alt="Portfolio 1">
+                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic7.jpg') }}"
+                                                alt="Portfolio 1">
                 </div>
                 <div class="item_overlay">
                     <div class="item_info">
@@ -271,7 +254,8 @@
             <!-- Portfolio Item -->
             <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;"
                  class="portfolio-item one-four   android isotope-item">
-                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic8.jpg') }}" alt="Portfolio 1">
+                <div class="portfolio_img"><img src="{{ asset('assets/img/portfolio_pic8.jpg') }}"
+                                                alt="Portfolio 1">
                 </div>
                 <div class="item_overlay">
                     <div class="item_info">
@@ -305,10 +289,14 @@
     <div class="client_logos"><!--client_logos-->
         <div class="container">
             <ul class="fadeInRight animated wow">
-                <li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo1.png') }}" alt=""></a></li>
-                <li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo2.png') }}" alt=""></a></li>
-                <li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo3.png') }}" alt=""></a></li>
-                <li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo4.png') }}" alt=""></a></li>
+                <li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo1.png') }}"
+                                                      alt=""></a></li>
+                <li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo2.png') }}"
+                                                      alt=""></a></li>
+                <li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo3.png') }}"
+                                                      alt=""></a></li>
+                <li><a href="javascript:void(0)"><img src="{{ asset('assets/img/client_logo4.png') }}"
+                                                      alt=""></a></li>
             </ul>
         </div>
     </div>
@@ -333,8 +321,10 @@
                 </div>
                 <h3 class="wow fadeInDown delay-03s">Tom Rensed</h3>
                 <span class="wow fadeInDown delay-03s">Chief Executive Officer</span>
-                <p class="wow fadeInDown delay-03s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                    consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
+                <p class="wow fadeInDown delay-03s">Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. Proin
+                    consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin
+                    consequat.</p>
             </div>
             <div class="team_area">
                 <div class="team_box  wow fadeInDown delay-06s">
@@ -349,8 +339,10 @@
                 </div>
                 <h3 class="wow fadeInDown delay-06s">Kathren Mory</h3>
                 <span class="wow fadeInDown delay-06s">Vice President</span>
-                <p class="wow fadeInDown delay-06s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                    consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
+                <p class="wow fadeInDown delay-06s">Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. Proin
+                    consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin
+                    consequat.</p>
             </div>
             <div class="team_area">
                 <div class="team_box wow fadeInDown delay-09s">
@@ -365,8 +357,10 @@
                 </div>
                 <h3 class="wow fadeInDown delay-09s">Lancer Jack</h3>
                 <span class="wow fadeInDown delay-09s">Senior Manager</span>
-                <p class="wow fadeInDown delay-09s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-                    consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
+                <p class="wow fadeInDown delay-09s">Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit. Proin
+                    consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin
+                    consequat.</p>
             </div>
         </div>
     </div>
@@ -409,13 +403,17 @@
 
 
                     <ul class="social_links">
-                        <li class="twitter animated bounceIn wow delay-02s"><a href="javascript:void(0)"><i
+                        <li class="twitter animated bounceIn wow delay-02s"><a
+                                    href="javascript:void(0)"><i
                                         class="fa fa-twitter"></i></a></li>
-                        <li class="facebook animated bounceIn wow delay-03s"><a href="javascript:void(0)"><i
+                        <li class="facebook animated bounceIn wow delay-03s"><a
+                                    href="javascript:void(0)"><i
                                         class="fa fa-facebook"></i></a></li>
-                        <li class="pinterest animated bounceIn wow delay-04s"><a href="javascript:void(0)"><i
+                        <li class="pinterest animated bounceIn wow delay-04s"><a
+                                    href="javascript:void(0)"><i
                                         class="fa fa-pinterest"></i></a></li>
-                        <li class="gplus animated bounceIn wow delay-05s"><a href="javascript:void(0)"><i
+                        <li class="gplus animated bounceIn wow delay-05s"><a
+                                    href="javascript:void(0)"><i
                                         class="fa fa-google-plus"></i></a></li>
                     </ul>
                 </div>
