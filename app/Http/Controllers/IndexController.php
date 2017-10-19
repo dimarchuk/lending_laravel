@@ -50,7 +50,7 @@ class IndexController extends Controller
             });
 
             //mail
-
+            dd(Config::get('mail'));
 
         }
 
