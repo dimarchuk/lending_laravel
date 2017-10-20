@@ -41,4 +41,4 @@
 
     {!! Html::link(route('pagesAdd'),'Новая страница') !!}
 
-</div>ma
+</div>
